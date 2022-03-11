@@ -25,7 +25,11 @@ class Difference {
         }
         return res;
     }
-}
+}//利用差分数组 比普通来说好太多 O(n + k)
+
+
+
+
 class Solution {
     public int[] getModifiedArray(int length, int[][] updates) {
         int[] arr = new int[length];
