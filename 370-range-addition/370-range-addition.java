@@ -1,43 +1,38 @@
-class Difference {
-    private int[] diff;
-    public Difference(int[] arr) {
+class Different {
+    int[] diff;
+    public Different(int[] arr){
         assert arr.length > 0;
         diff = new int[arr.length];
-        diff[0] = arr[0];
+        diff[0] = arr[0]; 
         for (int i = 1; i < arr.length; i++) {
-            diff[i] = arr[i] - arr[i -1]; 
+            diff[i] =  arr[i] - arr[i - 1];
         }
     }
-    
-    public void increment(int i, int j, int val) {
-        diff[i] += val;
+    public void increment(int i, int j, int n) {
+        diff[i] += n;
         if (j + 1 < diff.length) {
-            diff[j + 1] -= val;
+            diff[j + 1] -= n;
         }
     }
-    
     public int[] result() {
         int[] res = new int[diff.length];
         res[0] = diff[0];
-        for (int i = 1; i < diff.length; i ++) {
-            res[i] = res[i - 1] + diff[i];
-            
+        for (int i = 1; i < diff.length; i++) {
+            res[i] = diff[i] + res[i - 1];
         }
         return res;
     }
-}//利用差分数组 比普通来说好太多 O(n + k)
-
-
-
-
+}
 class Solution {
     public int[] getModifiedArray(int length, int[][] updates) {
-        int[] arr = new int[length];
-        Difference diff = new Difference(arr);
-        for (int i = 0; i < updates.length; i++) {
-            diff.increment(updates[i][0], updates[i][1], updates[i][2]);
+        int[] ans = new int[length];
+        Different diff = new Different(ans);
+        for (int[] operation : updates) {
+            int startIdx = operation[0];
+            int endIdx = operation[1];
+            int incre = operation[2];
+            diff.increment(startIdx, endIdx, incre);
         }
-
         return diff.result();
     }
 }
