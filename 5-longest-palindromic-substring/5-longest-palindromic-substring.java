@@ -22,7 +22,7 @@ class Solution {
             r++;
         }
         // 返回以 s[l] 和 s[r] 为中心的最长回文串
-        return s.substring(l + 1, r);
+        return s.substring(l + 1, r);//因为substring 是左闭右开的 所以 l+1
     }
 }
 // 详细解析参见：
